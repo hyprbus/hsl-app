@@ -1,0 +1,5 @@
+*.jsx text eol=lf
+*.js text eol=
+*.json text eol=lf
+*.tsx text eol=lf
+gi

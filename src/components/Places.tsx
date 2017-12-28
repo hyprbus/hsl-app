@@ -1,16 +1,16 @@
 import * as React from "react";
-// import styled from "styled-components";
+import styled from "styled-components";
 import { InterfacePlace } from "../types/types";
 import Place from "./Place";
 import { InterfacePlaceProps } from "./Place";
 
 export interface InterfacePlacesProps {
-  // className?: string;
+  className?: string;
   places: InterfacePlace[];
   onRemove: (id: number) => void;
 }
 
-const Places = ( props: InterfacePlacesProps ) => {
+const BarePlaces = ( props: InterfacePlacesProps ) => {
   const list: React.ReactNode[] = [];
   props.places.forEach((item) =>
     list.push(<Place
@@ -21,15 +21,15 @@ const Places = ( props: InterfacePlacesProps ) => {
   );
   return (
   <div
-  //  className={props.className}
+   className={props.className}
   >
     {list}
   </div>);
 };
 
-// const Places = styled(BarePlaces)`
-//   font-size: 2em;
-//   font-family: ${(props) => props.theme.textFont};
-// `;
+const Places = styled(BarePlaces)`
+  font-size: 2em;
+  font-family: ${(props) => props.theme.textFont};
+`;
 
 export default Places;

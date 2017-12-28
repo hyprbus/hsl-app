@@ -1,9 +1,6 @@
 import { PlaceAction } from "../actions/places";
 import { ADD_PLACE, DELETE_PLACE } from "../constants/constants";
-import { InterfaceStoreState } from "../types/types";
-
-// functionality for adding place
-// functionality for deleting place
+import { InterfacePlace, InterfaceStoreState } from "../types/types";
 
 export function placeReducer(state: InterfaceStoreState, action: PlaceAction): InterfaceStoreState {
   switch (action.type) {
@@ -14,12 +11,12 @@ export function placeReducer(state: InterfaceStoreState, action: PlaceAction): I
           name: action.name,
         }],
       };
-    // fix the slicing to be based on id, not hard-coded assumptions about the array
     case DELETE_PLACE:
+      const index = state.places.findIndex((x: InterfacePlace) => x.id === action.id);
       return {
         places: [
-          ...state.places.slice(0, action.id),
-          ...state.places.slice(action.id + 1),
+          ...state.places.slice(0, index),
+          ...state.places.slice(index + 1),
         ],
       };
     default:

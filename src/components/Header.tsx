@@ -3,11 +3,10 @@ import styled from "styled-components";
 
 export interface InterfaceHeaderProps {
   text: string;
-  textColor: string;
   className?: string;
 }
 
-export const BareHeader = (props: InterfaceHeaderProps) =>
+const BareHeader = (props: InterfaceHeaderProps) =>
   <h1
     className={props.className}
   >
@@ -15,9 +14,10 @@ export const BareHeader = (props: InterfaceHeaderProps) =>
   </h1>;
 
 const Header = styled(BareHeader)`
-  color: ${(props) => props.textColor};
-  background-color: ${(props) => props.theme.backgroundColor};
+  color: ${(props) => props.theme.textColor};
   font-family: ${(props) => props.theme.textFont};
+  font-size: 2.5em;
+  text-decoration: underline;
 `;
 
 export default Header;

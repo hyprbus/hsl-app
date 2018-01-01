@@ -29,6 +29,7 @@ const BarePlaces = ( props: InterfacePlacesProps ) => {
 
 const Places = styled(BarePlaces)`
   font-size: 2em;
+  color: ${(props) => props.theme.textColor};
   font-family: ${(props) => props.theme.textFont};
 `;
 

@@ -1,5 +1,6 @@
 const theme: object = {
-  backgroundColor: "blue",
+  backgroundColor: "#dddddd",
+  textColor: "#000000",
   textFont: '"Roboto Mono", monospace',
 };
 

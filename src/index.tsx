@@ -26,7 +26,7 @@ ReactDOM.render(
     <Provider store={store}>
         <ThemeProvider theme={theme} >
             <div>
-                <Header text="HSL Helper" textColor="yellow" />
+                <Header text="HSL Helper" />
                 <PlacesContainer />
             </div>
         </ThemeProvider>

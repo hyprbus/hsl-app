@@ -19,7 +19,7 @@ const BareButton = (props: InterfaceButton) => (
 const Button = styled(BareButton)`
   flex: 1;
   cursor: pointer;
-  color: white;
+  color: ${(props) => props.theme.textColor};
 `;
 
 export default Button;

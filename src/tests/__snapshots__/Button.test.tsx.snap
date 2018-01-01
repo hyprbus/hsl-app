@@ -2,7 +2,7 @@
 
 exports[`Todo component renders the todo correctly renders correctly 1`] = `
 <div
-  className="sc-bdVaJa bmmiQk"
+  className="sc-bdVaJa fkGfqE"
   onClick={undefined}
 >
   Test Label

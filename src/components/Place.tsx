@@ -9,7 +9,7 @@ export interface InterfacePlaceProps {
   onRemove?: () => void;
 }
 
-export const BarePlace = (props: InterfacePlaceProps) =>
+const BarePlace = (props: InterfacePlaceProps) =>
   <div className={props.className}>
     <Label>{props.text}</Label>
     <Button action={props.onRemove} label="[X]" />
@@ -25,6 +25,7 @@ const Place = styled(BarePlace)`
   flex-wrap: wrap;
   background-color: ${(props) => props.theme.backgroundColor};
   font-family: ${(props) => props.theme.textFont};
+  margin: 0 0 .25em 0;
 `;
 
 export default Place;

@@ -6,3 +6,8 @@ export interface InterfacePlace {
 export interface InterfaceStoreState {
   places: InterfacePlace[];
 }
+
+export interface InterfaceTestGraphQL {
+  name: string;
+  desc: string;
+}

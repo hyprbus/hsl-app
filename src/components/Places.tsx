@@ -6,31 +6,42 @@ import { InterfacePlaceProps } from "./Place";
 
 export interface InterfacePlacesProps {
   className?: string;
+  fetchingArrivals: boolean;
   places: InterfacePlace[];
-  onRemove: (id: number) => void;
+  onRemove: (id: string) => void;
+  fetchData: () => void;
 }
 
-const BarePlaces = ( props: InterfacePlacesProps ) => {
-  const list: React.ReactNode[] = [];
-  props.places.forEach((item) =>
-    list.push(<Place
-      key={item.id}
-      text={item.name}
-      onRemove={() => props.onRemove(item.id)}
-    />),
-  );
-  return (
-  <div
-   className={props.className}
-  >
-    {list}
-  </div>);
-};
+export default class BarePlaces extends React.Component<InterfacePlacesProps, any> {
+  constructor(props: any) {
+    super(props);
+  }
+  public componentDidMount() {
+    this.props.fetchData();
+  }
+  public render() {
+    if (this.props.fetchingArrivals) {
+      return null;
+    } else {
+      const list: React.ReactNode[] = [];
+      this.props.places.forEach((item) =>
+        list.push(<Place
+          key={item.id}
+          text={item.name}
+          onRemove={() => this.props.onRemove(item.id)}
+        />),
+      );
+      return (
+      <div
+      className={this.props.className}
+      >
+        {list}
+      </div>);
+  }}
+}
 
-const Places = styled(BarePlaces)`
-  font-size: 2em;
-  color: ${(props) => props.theme.textColor};
-  font-family: ${(props) => props.theme.textFont};
-`;
-
-export default Places;
+// export default styled(BarePlaces)`
+//   font-size: 2em;
+//   color: ${(props) => props.theme.textColor};
+//   font-family: ${(props) => props.theme.textFont};
+// `;

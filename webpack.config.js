@@ -17,9 +17,11 @@ module.exports = {
   module: {
     rules: [
       // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+      // Note separate typescript tsconfig file, in order to exclude Jest test files
       { test: /\.tsx?$/, loader: "awesome-typescript-loader?configFileName=tsconfig.webpack.json" },
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+      // Remember to exclude node_modules! Otherwise, lots of warnings.
+      { enforce: "pre", test: /\.js$/, loader: "source-map-loader", exclude: /node_modules/, }
     ],
     loaders: [{
       test: /\.js$/,

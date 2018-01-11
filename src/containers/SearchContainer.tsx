@@ -1,9 +1,14 @@
+// perform data fetching on mount
+// data gets put in state
+// other components are rendered
+
+import * as React from "react";
 import { connect, Dispatch } from "react-redux";
 import * as actions from "../actions/places";
 import Places from "../components/Places";
-import { InterfaceStoreState } from "../types/types";
+import { InterfacePlacesState } from "../types/types";
 
-const mapStateToProps = ({ places }: InterfaceStoreState) => {
+const mapStateToProps = ({ places }: InterfacePlacesState) => {
   return {
     places,
   };
@@ -11,7 +16,7 @@ const mapStateToProps = ({ places }: InterfaceStoreState) => {
 
 const mapDispatchToProps = (dispatch: Dispatch<actions.PlaceAction>) => {
   return {
-    onRemove: (id: number) => { dispatch(actions.deletePlace(id)); },
+    onRemove: (id: string) => { dispatch(actions.deletePlace(id)); },
   };
 };
 

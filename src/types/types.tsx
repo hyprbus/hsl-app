@@ -1,13 +1,23 @@
 export interface InterfacePlace {
-  id: number;
+  id: string;
+  address: string;
   name: string;
+  customName?: string;
 }
 
-export interface InterfaceStoreState {
+export interface InterfacePlacesState {
   places: InterfacePlace[];
 }
 
-export interface InterfaceTestGraphQL {
-  name: string;
-  desc: string;
+export interface IArrival {
+  stopId: string;
+  patternName: string;
+  scheduledArrival: number;
 }
+
+export interface InterfaceArrivalsState {
+  arrivals: IArrival[];
+  fetchingArrivals: boolean;
+}
+
+export type InterfaceStoreState = InterfacePlacesState & InterfaceArrivalsState;

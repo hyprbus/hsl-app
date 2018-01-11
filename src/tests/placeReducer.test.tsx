@@ -1,13 +1,13 @@
 import { addPlace, PlaceAction } from "../actions/places";
 import { ADD_PLACE, DELETE_PLACE } from "../constants/constants";
 import { placeReducer } from "../reducers/placeReducer";
-import { InterfacePlace, InterfaceStoreState } from "../types/types";
+import { InterfacePlace, InterfacePlacesState } from "../types/types";
 
 // see https://rjzaworski.com/2016/12/testing-typescript-with-jest
 
 const initialState: InterfacePlace[] = [];
 const place1: PlaceAction = addPlace(1, "First place");
-const result1: InterfaceStoreState = placeReducer({places: initialState}, place1);
+const result1: InterfacePlacesState = placeReducer({places: initialState}, place1);
 
 // add a new place:
 

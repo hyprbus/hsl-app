@@ -3,13 +3,14 @@ import styled from "styled-components";
 import { InterfacePlace } from "../types/types";
 import Place from "./Place";
 import { InterfacePlaceProps } from "./Place";
+import PlacesDiv from "./PlacesDiv";
 
 export interface InterfacePlacesProps {
   className?: string;
   fetchingArrivals: boolean;
   places: InterfacePlace[];
   onRemove: (id: string) => void;
-  fetchData: () => void;
+  fetchData: (query: string[]) => void;
 }
 
 export default class BarePlaces extends React.Component<InterfacePlacesProps, any> {
@@ -17,7 +18,9 @@ export default class BarePlaces extends React.Component<InterfacePlacesProps, an
     super(props);
   }
   public componentDidMount() {
-    this.props.fetchData();
+    const queryArr: string[] = [];
+    this.props.places.forEach((e) => queryArr.push(e.id));
+    this.props.fetchData(queryArr);
   }
   public render() {
     if (this.props.fetchingArrivals) {
@@ -31,17 +34,6 @@ export default class BarePlaces extends React.Component<InterfacePlacesProps, an
           onRemove={() => this.props.onRemove(item.id)}
         />),
       );
-      return (
-      <div
-      className={this.props.className}
-      >
-        {list}
-      </div>);
+      return <PlacesDiv>{list}</PlacesDiv>;
   }}
 }
-
-// export default styled(BarePlaces)`
-//   font-size: 2em;
-//   color: ${(props) => props.theme.textColor};
-//   font-family: ${(props) => props.theme.textFont};
-// `;

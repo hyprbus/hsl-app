@@ -6,8 +6,9 @@ import { InterfacePlace, InterfacePlacesState } from "../types/types";
 // see https://rjzaworski.com/2016/12/testing-typescript-with-jest
 
 const initialState: InterfacePlace[] = [];
-const place1: PlaceAction = addPlace(1, "First place");
-const result1: InterfacePlacesState = placeReducer({places: initialState}, place1);
+const testPlace = {id: "HSL:1011310", address: "Address", name: "Name", customName: "Custom Name"};
+const place1: PlaceAction = addPlace(testPlace.id, testPlace.name, testPlace.address, testPlace.customName);
+const result1: InterfacePlace[] = placeReducer(initialState, place1);
 
 // add a new place:
 
@@ -15,7 +16,7 @@ const result1: InterfacePlacesState = placeReducer({places: initialState}, place
 
 describe("Adding new places", () => {
   test("New place added to state", () => {
-    expect(result1).toEqual({places: [{id: 1, name: "First place"}]});
+    expect(result1).toEqual([testPlace]);
   });
 });
 

@@ -21,3 +21,30 @@ export interface InterfaceArrivalsState {
 }
 
 export type InterfaceStoreState = InterfacePlacesState & InterfaceArrivalsState;
+
+// interfaces for arrivals data object received from server:
+
+interface IScheduledArrival {
+  scheduledArrival: number;
+  testArg?: string;
+}
+interface IPattern {
+  name: string;
+}
+interface IStoptimesForPatterns {
+  pattern: IPattern;
+  stoptimes: IScheduledArrival[];
+}
+interface IStops {
+  desc: string;
+  gtfsId: string;
+  name: string;
+  stoptimesForPatterns: IStoptimesForPatterns[];
+}
+export interface IArrivalsDataData {
+  stops: IStops[];
+}
+
+export interface IArrivalsData {
+  data: IArrivalsDataData;
+}

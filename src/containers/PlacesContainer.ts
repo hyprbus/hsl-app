@@ -13,7 +13,7 @@ const mapStateToProps = ({ fetchingArrivals, places }: InterfaceStoreState) => {
 
 const mapDispatchToProps = (dispatch: Dispatch<placeActions.PlaceAction>) => {
   return {
-    fetchData: () => { dispatch(arrivalActions.fetchArrivals("currently hardcoded")); },
+    fetchData: (query: string[]) => { dispatch(arrivalActions.fetchArrivals(query)); },
     onRemove: (id: string) => { dispatch(placeActions.deletePlace(id)); },
   };
 };

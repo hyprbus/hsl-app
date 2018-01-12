@@ -10,7 +10,8 @@ const testArrivals: IArrival[] = [
 export function arrivalsReducer(state: IArrival[] = testArrivals, action: ArrivalAction): IArrival[] {
   switch (action.type) {
     case FETCH_ARRIVALS_SUCCESS:
-      return action.arrivals;
+    console.log("Fetch arrivals success!", action.arrivals);
+    return action.arrivals;
     default:
       return state;
   }

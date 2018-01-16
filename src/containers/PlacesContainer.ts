@@ -4,8 +4,9 @@ import * as placeActions from "../actions/places";
 import Places from "../components/Places";
 import { InterfaceStoreState } from "../types/types";
 
-const mapStateToProps = ({ fetchingArrivals, places }: InterfaceStoreState) => {
+const mapStateToProps = ({ arrivals, fetchingArrivals, places }: InterfaceStoreState) => {
   return {
+    arrivals,
     fetchingArrivals,
     places,
   };

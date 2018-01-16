@@ -5,7 +5,6 @@ import { applyMiddleware, createStore } from "redux";
 import thunk from "redux-thunk";
 import { ThemeProvider } from "styled-components";
 import Header from "./components/Header";
-import ArrivalsContainer from "./containers/ArrivalsContainer";
 import PlacesContainer from "./containers/PlacesContainer";
 import SearchContainer from "./containers/SearchContainer";
 import rootReducer from "./reducers/reducers";
@@ -20,7 +19,6 @@ ReactDOM.render(
                     <div>
                         <Header text="HSL Helper" />
                         <PlacesContainer />
-                        {/* <ArrivalsContainer /> */}
                     </div>
                 </ThemeProvider>
             </Provider>,

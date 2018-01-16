@@ -3,6 +3,7 @@ export interface InterfacePlace {
   address: string;
   name: string;
   customName?: string;
+  // arrivals: IArrival[];
 }
 
 export interface InterfacePlacesState {
@@ -13,6 +14,7 @@ export interface IArrival {
   stopId: string;
   patternName: string;
   scheduledArrival: number;
+  [key: string]: string | number;
 }
 
 export interface InterfaceArrivalsState {

@@ -13,7 +13,8 @@ const BareDiv = (props: InterfacePlacesDiv) => (
 );
 
 const PlacesDiv = styled(BareDiv)`
-  font-size: 2em;
+  width: 100%;
+  font-size: 1em;
   color: ${(props) => props.theme.textColor};
   font-family: ${(props) => props.theme.textFont};
 `;

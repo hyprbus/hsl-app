@@ -11,12 +11,12 @@ const testArrivals: IArrival[] = [
 export function arrivalsReducer(state: IArrival[] = testArrivals, action: ArrivalAction): IArrival[] {
   switch (action.type) {
     case FETCH_ARRIVALS_SUCCESS:
-    const d = new Date();
-    const currentTime = dateToSeconds(d);
-    // tslint:disable-next-line:max-line-length
-    const filtered = action.arrivals.filter((a) => a.scheduledArrival > currentTime && a.scheduledArrival < (currentTime + 20 * 60));
-    const sortedArrivals: IArrival[] = sortArray(filtered, "scheduledArrival");
-    return sortedArrivals;
+      const d = new Date();
+      const currentTime = dateToSeconds(d);
+      // tslint:disable-next-line:max-line-length
+      const filtered = action.arrivals.filter((a) => a.scheduledArrival > currentTime && a.scheduledArrival < (currentTime + 20 * 60));
+      const sortedArrivals: IArrival[] = sortArray(filtered, "scheduledArrival");
+      return sortedArrivals;
     default:
       return state;
   }

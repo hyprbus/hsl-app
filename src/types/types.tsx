@@ -3,7 +3,7 @@ export interface InterfacePlace {
   address: string;
   name: string;
   customName?: string;
-  // arrivals: IArrival[];
+  code?: string;
 }
 
 export interface InterfacePlacesState {
@@ -22,7 +22,18 @@ export interface InterfaceArrivalsState {
   fetchingArrivals: boolean;
 }
 
-export type InterfaceStoreState = InterfacePlacesState & InterfaceArrivalsState;
+export interface InterfaceSearchParams {
+  fetchingStops: boolean;
+  searchParams: string;
+}
+
+export interface InterfaceSearchResults {
+  foundStops: InterfacePlace[];
+}
+
+export type InterfaceSearchState = InterfaceSearchParams & InterfaceSearchResults;
+
+export type InterfaceStoreState = InterfacePlacesState & InterfaceArrivalsState & InterfaceSearchState;
 
 // interfaces for arrivals data object received from server:
 
@@ -49,4 +60,21 @@ export interface IArrivalsDataData {
 
 export interface IArrivalsData {
   data: IArrivalsDataData;
+}
+
+// interfaces for search data object received from server
+
+interface IStop {
+  gtfsId: string;
+  name: string;
+  code: string;
+  desc: string;
+}
+
+interface IStopsData {
+  stops: IStop[];
+}
+
+export interface IStopsSearch {
+  data: IStopsData;
 }

@@ -8,15 +8,18 @@ import { InterfacePlace, InterfacePlacesState } from "../types/types";
 const initialState: InterfacePlace[] = [];
 const testPlace = {id: "HSL:1011310", address: "Address", name: "Name", customName: "Custom Name"};
 const place1: PlaceAction = addPlace(testPlace.id, testPlace.name, testPlace.address, testPlace.customName);
-const result1: InterfacePlace[] = placeReducer(initialState, place1);
+
+const bogusAction = {type: "FOO_BAR", id: "HSL:1011310", address: "Address", name: "Name", customName: "Custom Name"}
 
 // add a new place:
-
 // return current state of places plus new place
 
 describe("Adding new places", () => {
   test("New place added to state", () => {
-    expect(result1).toEqual([testPlace]);
+    expect(placeReducer([], place1)).toEqual([testPlace]);
+  });
+  test("Return default state if action not applicable", () => {
+    expect(placeReducer([], bogusAction)).toEqual([]);
   });
 });
 

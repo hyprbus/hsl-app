@@ -20,12 +20,12 @@ const BareArrivals = (props: InterfaceArrivalsDiv) => {
     const hrs: string = Math.floor(friendlyTime / 3600).toString();
     const mins: string = ((friendlyTime % 3600) / 60).toString();
     const timeStr: string = "00".substr(hrs.length) + hrs + ":" + "00".substr(mins.length) + mins;
-    // only include part of pattern name before the first whitespace character
+    // only include pattern name before the first whitespace character
     const shortName = arrival.patternName.substr(0, arrival.patternName.search(/\s/));
     const patternNumber: string = shortName.length > 0 ? shortName : arrival.patternName.substr(0, 10);
     filteredArrivals.push(
       <Arrival
-        key={`${patternNumber} + ${arrival.scheduledArrival}`}
+        key={`${patternNumber} + ${arrival.scheduledArrival} +${Math.random()}`}
         patternName={patternNumber}
         arrivalTime={timeStr}
         waitTime={waitTime}

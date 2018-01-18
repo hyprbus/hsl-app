@@ -2,7 +2,7 @@ import { Action, Dispatch } from "redux";
 import * as constants from "../constants/constants";
 import extractArrivals from "../functions/extractArrivals";
 import { generateQuery } from "../functions/generateArrivalsQuery";
-import { IArrival, IArrivalsData } from "../types/types";
+import { IArrival } from "../types/types";
 
 export interface InterfaceRequestArrivals {
     type: constants.FETCH_ARRIVALS_REQUEST;

@@ -18,6 +18,7 @@ ReactDOM.render(
                 <ThemeProvider theme={theme} >
                     <div>
                         <Header text="HSL Helper" />
+                        <SearchContainer />
                         <PlacesContainer />
                     </div>
                 </ThemeProvider>

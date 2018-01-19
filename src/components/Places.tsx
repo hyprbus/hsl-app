@@ -19,6 +19,7 @@ export default class BarePlaces extends React.Component<InterfacePlacesProps, an
   constructor(props: any) {
     super(props);
   }
+
   public componentDidMount() {
     const queryArr: string[] = [];
     this.props.places.forEach((e) => queryArr.push(e.id));
@@ -28,13 +29,14 @@ export default class BarePlaces extends React.Component<InterfacePlacesProps, an
     if (this.props.fetchingArrivals) {
       return <div>Fetching data...</div>;
     } else {
+      console.log("Found places!", this.props.places);
       const list: React.ReactNode[] = [];
       this.props.places.forEach((item) => {
         const arrivals = this.props.arrivals.filter((arrival) => arrival.stopId === item.id);
         list.push(<div key={`place + ${item.id}`} >
           <Place
             key={item.id}
-            text={item.name}
+            text={item.customName}
             onRemove={() => this.props.onRemove(item.id)} />
           <Arrivals arrivals={arrivals.slice(0, 5)} />
         </div>);

@@ -3,10 +3,9 @@ import { ADD_PLACE, DELETE_PLACE } from "../constants/constants";
 import { InterfacePlace, InterfacePlacesState } from "../types/types";
 
 const testPlaces: InterfacePlace[] = [
-  { id: "HSL:1140105", address: "Topeliuksenkatu 10", name: "Linnankoskenkatu", customName: "Taka-Töölö"},
-  { id: "HSL:1230407", address: "Arabianranta", name: "Arabianranta", customName: "Lindqvistit"},
-  { id: "HSL:1040144", address: "Fredrikinkatu 65", name: "Kamppi(M)", customName: "Keskusta"},
-  { id: "HSL:1040408", address: "Test", name: "Test", customName: "Test"},
+  { address: "Topeliuksenkatu 10", customName: "Makuuni => Kamppi", id: "HSL:1140105", name: "Linnankoskenkatu"},
+  { address: "Arabianranta", customName: "Katilta ja Vesalta", id: "HSL:1230407", name: "Arabianranta"},
+  { address: "Fredrikinkatu 65", customName: "Lasipalatsilta kotiin", id: "HSL:1040144", name: "Kamppi(M)"},
 ];
 
 export function placeReducer(state: InterfacePlace[] = testPlaces, action: PlaceAction): InterfacePlace[] {

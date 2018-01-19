@@ -17,6 +17,9 @@ const BareRow = (props: IRow) => {
 const Row = styled(BareRow)`
   display: flex;
   flex-wrap: wrap;
+  font-size: 1em;
+  color: ${(props) => props.theme.textColor};
+  font-family: ${(props) => props.theme.textFont};
 `;
 
 export default Row;

@@ -4,11 +4,11 @@ import arrayToString from "./arrayToString";
 
 export const generateSearchQuery = (parameter: string): string => {
   return `{
-    stops(name: '"'${parameter}'"') {
+    stops(name: "${parameter}") {
       gtfsId
-      name
-      code
       desc
+      code
+      name
     }
   }`;
 };

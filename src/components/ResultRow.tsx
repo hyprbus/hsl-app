@@ -6,7 +6,7 @@ import Row from "./Row";
 
 export interface IResultRowProps {
   data: string[];
-  idKey: string;
+  rowId: string;
   className?: string;
   select?: (id: string, name: string, address: string, customName?: string) => void;
 }
@@ -14,6 +14,7 @@ export interface IResultRowProps {
 // take a string[] and create a column for each field
 const BareResultRow = (props: IResultRowProps) => {
   const columns: React.ReactNode[] = [];
+  console.log("Result row", props.data, "ID: ", props.rowId);
   props.data.forEach((item) => {
     columns.push(
       <Column width="20%" align="left">
@@ -25,7 +26,7 @@ const BareResultRow = (props: IResultRowProps) => {
   });
   return (
   <Row className={props.className}>
-    <div onClick={() => props.select("HSL:1140439", props.data[2], props.data[0], props.data[2])}>
+    <div onClick={() => props.select(props.rowId, props.data[0], props.data[1], props.data[0] + " " + props.data[2])}>
       {columns}
     </div>
   </Row>

@@ -6,22 +6,22 @@ import Row from "./Row";
 
 export interface ISearchResults {
   className?: string;
-  idKey: string;
+  idKeyName: string;
   results: object[];
   mappings: object;
   select: (id: string, name: string, address: string, customName?: string) => void;
 }
 
 interface IResultObject {
-  [key: string]: string | number;
+  [key: string]: string;
 }
 const BareResults = (props: ISearchResults) => {
   const noOfResults = props.results.length;
   if (noOfResults < 1) {
-    return null;
+    return <div>No stops found.</div>;
   }
-  if (noOfResults > 10) {
-    return <div>{noOfResults}</div>;
+  if (noOfResults > 8) {
+    return <div>{`${noOfResults} stops found`}</div>;
   }
 
   const headerRow: React.ReactNode[] = [];
@@ -32,6 +32,10 @@ const BareResults = (props: ISearchResults) => {
 
   const resultRows: React.ReactNode[] = [];
   props.results.forEach((result: IResultObject) => {
+    console.log("Props.results in SearchResults: ", props.results);
+    // get the value of the id field.
+    // Example idKeyName = "myId", result = { myId: "abcd00", name: "foo"} => "abcd00"
+    const rowId = result[props.idKeyName];
     // convert each result object into string[] and supply to ResultRow as data={[]}
     const resultData: string[] = [];
     for (const i in result) {
@@ -41,7 +45,7 @@ const BareResults = (props: ISearchResults) => {
      }
     resultRows.push(
     <ResultRow
-      idKey={props.idKey}
+      rowId={rowId}
       data={Object.values(resultData)}
       select={props.select}
     />);

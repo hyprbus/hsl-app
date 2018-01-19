@@ -22,6 +22,7 @@ export type ArrivalAction = InterfaceRequestArrivals | InterfaceFetchArrivals | 
 
 // request for arrivals
 export function requestArrivals(): InterfaceRequestArrivals {
+    console.log("from requestArrivals");
     return {
         type: constants.FETCH_ARRIVALS_REQUEST,
     };
@@ -37,6 +38,7 @@ export function receiveArrivals(arrivals: IArrival[]): InterfaceReceiveArrivals 
 
 // fetch arrivals from API
 export function fetchArrivals(params: string[]) {
+    console.log("Fetching this: ", params);
     return (dispatch: Dispatch<Action>) => {
         dispatch(requestArrivals());
         return fetch("https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql",

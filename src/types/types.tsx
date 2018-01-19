@@ -1,9 +1,9 @@
 export interface InterfacePlace {
-  id: string;
   address: string;
-  name: string;
-  customName?: string;
   code?: string;
+  customName?: string;
+  id: string;
+  name: string;
 }
 
 export interface InterfacePlacesState {

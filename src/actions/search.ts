@@ -41,6 +41,7 @@ export function receiveStops(foundStops: InterfacePlace[]): InterfaceReceiveStop
 export function fetchStops(params: string) {
     return (dispatch: Dispatch<Action>) => {
         dispatch(requestStops(params));
+        console.log("Fetching stops...");
         return fetch("https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql",
     {
         body: JSON.stringify({ query: generateSearchQuery(params)}),
@@ -49,6 +50,7 @@ export function fetchStops(params: string) {
       })
       .then((response) => response.json())
       .then((data) => {
+        console.log("Found some stops", data);
         return extractStops(data);
       })
       .then((json) => {

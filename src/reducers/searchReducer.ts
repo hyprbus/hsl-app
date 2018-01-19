@@ -5,6 +5,7 @@ import { InterfacePlace } from "../types/types";
 export function foundStopsReducer(state: InterfacePlace[] = [], action: SearchAction): InterfacePlace[] {
   switch (action.type) {
     case FETCH_STOPS_SUCCESS:
+      console.log("Inside foundStopsreducer", action.foundStops);
       return action.foundStops;
     default:
       return state;

@@ -2,7 +2,8 @@ import { Action, Dispatch } from "redux";
 import * as constants from "../constants/constants";
 import extractArrivals from "../functions/extractArrivals";
 import { generateQuery } from "../functions/generateArrivalsQuery";
-import { IArrival } from "../types/types";
+import { IArrival, InterfacePlace } from "../types/types";
+import { addPlace } from "./places";
 
 export interface InterfaceRequestArrivals {
     type: constants.FETCH_ARRIVALS_REQUEST;
@@ -37,13 +38,14 @@ export function receiveArrivals(arrivals: IArrival[]): InterfaceReceiveArrivals 
 }
 
 // fetch arrivals from API
-export function fetchArrivals(params: string[]) {
-    console.log("Fetching this: ", params);
+export function fetchArrivals(params: string[], newPlace?: InterfacePlace) {
+    const addANewPlace = newPlace == null ? false : true;
+    const allPlaces = !addANewPlace ? params : [ ...params, newPlace.id];
     return (dispatch: Dispatch<Action>) => {
         dispatch(requestArrivals());
         return fetch("https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql",
     {
-        body: JSON.stringify({ query: generateQuery(params)}),
+        body: JSON.stringify({ query: generateQuery(allPlaces)}),
         headers: { "Content-Type": "application/json" },
         method: "POST",
       })
@@ -53,6 +55,9 @@ export function fetchArrivals(params: string[]) {
       })
       .then((json) => {
         dispatch(receiveArrivals(json));
-      });
+      })
+      .then(() => {
+          if (addANewPlace) { dispatch(addPlace(newPlace)); }
+        });
       };
 }

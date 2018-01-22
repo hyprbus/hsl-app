@@ -29,7 +29,6 @@ export default class BarePlaces extends React.Component<InterfacePlacesProps, an
     if (this.props.fetchingArrivals) {
       return <div>Fetching data...</div>;
     } else {
-      console.log("Found places!", this.props.places);
       const list: React.ReactNode[] = [];
       this.props.places.forEach((item) => {
         const arrivals = this.props.arrivals.filter((arrival) => arrival.stopId === item.id);

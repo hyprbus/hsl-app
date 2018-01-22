@@ -25,6 +25,7 @@ export interface InterfaceArrivalsState {
 export interface InterfaceSearchParams {
   fetchingStops: boolean;
   searchParams: string;
+  selectedIds: string[];
 }
 
 export interface InterfaceSearchResults {

@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import { InterfacePlace } from "../types/types";
 import Column from "./Column";
 import ResultRow from "./ResultRow";
 import Row from "./Row";
@@ -9,7 +10,8 @@ export interface ISearchResults {
   idKeyName: string;
   results: object[];
   mappings: object;
-  select: (id: string, name: string, address: string, customName?: string) => void;
+  selectedIds: string[];
+  select: (selectedIds: string[], place: InterfacePlace) => void;
 }
 
 interface IResultObject {
@@ -32,7 +34,6 @@ const BareResults = (props: ISearchResults) => {
 
   const resultRows: React.ReactNode[] = [];
   props.results.forEach((result: IResultObject) => {
-    console.log("Props.results in SearchResults: ", props.results);
     // get the value of the id field.
     // Example idKeyName = "myId", result = { myId: "abcd00", name: "foo"} => "abcd00"
     const rowId = result[props.idKeyName];
@@ -40,17 +41,23 @@ const BareResults = (props: ISearchResults) => {
     const resultData: string[] = [];
     for (const i in result) {
       if (result.hasOwnProperty(i) && i in props.mappings) {
-        resultData.push(result[i].toString());
+        const val = result[i] == null ? "-" : result[i].toString();
+        resultData.push(val);
       }
-     }
+    }
+    let rowIsSelectable = true;
+    if (props.selectedIds.includes(rowId)) {
+      rowIsSelectable = false;
+    }
     resultRows.push(
-    <ResultRow
-      rowId={rowId}
-      data={Object.values(resultData)}
-      select={props.select}
-    />);
+      <ResultRow
+        rowId={rowId}
+        data={Object.values(resultData)}
+        select={props.select}
+        selectedIds={props.selectedIds}
+        selectable={rowIsSelectable}
+      />);
   });
-
   return (
   <div className={props.className}>
     <Row>{headerRow}</Row>

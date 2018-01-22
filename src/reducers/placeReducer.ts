@@ -13,12 +13,7 @@ export function placeReducer(state: InterfacePlace[] = testPlaces, action: Place
     case ADD_PLACE:
       return [
         ...state,
-        {
-          address: action.address,
-          customName: action.customName,
-          id: action.id,
-          name: action.name,
-        },
+          action.place,
       ];
     case DELETE_PLACE:
       const index = state.findIndex((x: InterfacePlace) => x.id === action.id);

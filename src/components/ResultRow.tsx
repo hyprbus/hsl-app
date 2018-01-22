@@ -8,13 +8,14 @@ export interface IResultRowProps {
   data: string[];
   rowId: string;
   className?: string;
-  select?: (id: string, name: string, address: string, customName?: string) => void;
+  selectable: boolean;
+  selectedIds: string[];
+  select?: (selectedIds: string[], place: InterfacePlace) => void;
 }
 
 // take a string[] and create a column for each field
 const BareResultRow = (props: IResultRowProps) => {
   const columns: React.ReactNode[] = [];
-  console.log("Result row", props.data, "ID: ", props.rowId);
   props.data.forEach((item) => {
     columns.push(
       <Column width="20%" align="left">
@@ -24,19 +25,38 @@ const BareResultRow = (props: IResultRowProps) => {
       </Column>,
     );
   });
-  return (
-  <Row className={props.className}>
-    <div onClick={() => props.select(props.rowId, props.data[0], props.data[1], props.data[0] + " " + props.data[2])}>
-      {columns}
-    </div>
-  </Row>
-  );
+  // if a search row is already in my selected items, make it unclickable
+  if (!props.selectable) {
+    return (
+      <Row className={props.className}>
+        <div>{columns}</div>
+      </Row>
+      );
+  } else {
+      const newPlace: InterfacePlace = {
+        address: props.data[1],
+        code: props.data[2],
+        customName: props.data[2] + " " + props.data[0],
+        id: props.rowId,
+        name: props.data[0],
+      };
+      return (
+        <Row className={props.className}>
+          <div
+            onClick={() => props.select(props.selectedIds, newPlace)}
+          >
+            {columns}
+          </div>
+        </Row>
+        );
+  }
 };
 
 const ResultRow = styled(BareResultRow)`
   background-color: ${(props) => props.theme.backgroundColor};
   font-family: ${(props) => props.theme.textFont};
   margin: 0 0 .25em 0;
+  font-style: ${(props) => props.selectable ? "normal" : "italic"};
 `;
 
 export default ResultRow;

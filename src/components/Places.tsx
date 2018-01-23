@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import Arrivals from "../containers/Arrivals";
+import { setCookie } from "../functions/cookies";
 import { IArrival, InterfacePlace } from "../types/types";
 import Place from "./Place";
 import { InterfacePlaceProps } from "./Place";
@@ -24,6 +25,9 @@ export default class BarePlaces extends React.Component<InterfacePlacesProps, an
     const queryArr: string[] = [];
     this.props.places.forEach((e) => queryArr.push(e.id));
     this.props.fetchData(queryArr);
+  }
+  public componentDidUpdate() {
+    setCookie("places", JSON.stringify(this.props.places), 180);
   }
   public render() {
     if (this.props.fetchingArrivals) {

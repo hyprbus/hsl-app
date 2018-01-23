@@ -10,23 +10,23 @@ export interface ISearchBoxProps {
   idKeyName: string;
   mappings: object;
   results: object[];
+  searchParams: string;
+  searchStringMinLength: number;
   selectedIds: string[];
   selectResult: (selectedIds: string[], place: InterfacePlace) => void;
+  setSearchParams: (p: string) => void;
 }
 
 export default class SearchBox extends React.Component<ISearchBoxProps, any> {
   constructor(props: any) {
     super(props);
-    this.state = {
-      searchString: "",
-    };
     this.handleChange = this.handleChange.bind(this);
   }
 
   public handleChange(event: React.FormEvent<HTMLInputElement>) {
     const searchString: string = event.currentTarget.value;
-    this.setState({searchString});
-    if (searchString.length > 5 && !this.props.fetchingStops) {
+    this.props.setSearchParams(searchString);
+    if (searchString.length >= this.props.searchStringMinLength && !this.props.fetchingStops) {
       this.props.fetchResults(searchString);
     }
   }
@@ -35,17 +35,17 @@ export default class SearchBox extends React.Component<ISearchBoxProps, any> {
     // filter results
     return (
       <div className={this.props.className}>
-        <form onSubmit={(e) => { e.preventDefault(); }} >
+        <Form onSubmit={(e) => { e.preventDefault(); }} >
           <label>
             Find stops:
           </label>
-          <input type="text" onChange={this.handleChange}>
-          </input>
-        </form>
+          <Input type="text" onChange={this.handleChange} value={this.props.searchParams}>
+          </Input>
+        </Form>
         <SearchResults
           idKeyName={this.props.idKeyName}
           mappings={this.props.mappings}
-          results={this.props.results}
+          results={this.props.searchParams.length >= this.props.searchStringMinLength ? this.props.results : null}
           selectedIds={this.props.selectedIds}
           select={this.props.selectResult}
         />
@@ -53,3 +53,20 @@ export default class SearchBox extends React.Component<ISearchBoxProps, any> {
     );
   }
 }
+
+const Input = styled.input`
+  font-family: ${(props) => props.theme.textFont};
+  padding: 2px;
+  margin: 0 0 0 1em;
+  border-width: 0 0 2px 0;
+  border-color: #000;
+  &:focus {
+    background-color: ${(props) => props.theme.selectedBackgroundColor};
+    outline: none;
+  }
+`;
+
+const Form = styled.form`
+  font-family: ${(props) => props.theme.textFont};
+  margin: 0 0 1em 0;
+`;

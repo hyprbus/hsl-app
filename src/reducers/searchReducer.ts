@@ -1,11 +1,10 @@
 import { SearchAction } from "../actions/search";
-import { FETCH_STOPS_REQUEST, FETCH_STOPS_SUCCESS } from "../constants/constants";
+import { FETCH_STOPS_REQUEST, FETCH_STOPS_SUCCESS, SET_SEARCH_PARAMS } from "../constants/constants";
 import { InterfacePlace } from "../types/types";
 
-export function foundStopsReducer(state: InterfacePlace[] = [], action: SearchAction): InterfacePlace[] {
+export function foundStopsReducer(state: InterfacePlace[] = null, action: SearchAction): InterfacePlace[] {
   switch (action.type) {
     case FETCH_STOPS_SUCCESS:
-      console.log("Inside foundStopsreducer", action.foundStops);
       return action.foundStops;
     default:
       return state;
@@ -25,7 +24,7 @@ export function fetchingStopsReducer(state: boolean = false, action: SearchActio
 
 export function setSearchParamsReducer(state: string = "", action: SearchAction): string {
   switch (action.type) {
-    case FETCH_STOPS_REQUEST:
+    case SET_SEARCH_PARAMS:
       return action.searchParams;
     default:
       return state;

@@ -19,7 +19,13 @@ export interface InterfaceReceiveStops {
     type: constants.FETCH_STOPS_SUCCESS;
 }
 
-export type SearchAction = InterfaceRequestStops | InterfaceFetchStops | InterfaceReceiveStops;
+export interface InterfaceSetSearchParams {
+    searchParams: string;
+    type: constants.SET_SEARCH_PARAMS;
+  }
+
+// tslint:disable-next-line:max-line-length
+export type SearchAction = InterfaceRequestStops | InterfaceFetchStops | InterfaceReceiveStops | InterfaceSetSearchParams;
 
 // request for stops
 export function requestStops(params: string): InterfaceRequestStops {
@@ -30,7 +36,7 @@ export function requestStops(params: string): InterfaceRequestStops {
 }
 
 // receive stops
-export function receiveStops(foundStops: InterfacePlace[]): InterfaceReceiveStops {
+export function setStops(foundStops: InterfacePlace[]): InterfaceReceiveStops {
     return {
         foundStops,
         type: constants.FETCH_STOPS_SUCCESS,
@@ -41,7 +47,6 @@ export function receiveStops(foundStops: InterfacePlace[]): InterfaceReceiveStop
 export function fetchStops(params: string) {
     return (dispatch: Dispatch<Action>) => {
         dispatch(requestStops(params));
-        console.log("Fetching stops...");
         return fetch("https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql",
     {
         body: JSON.stringify({ query: generateSearchQuery(params)}),
@@ -50,11 +55,17 @@ export function fetchStops(params: string) {
       })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Found some stops", data);
         return extractStops(data);
       })
       .then((json) => {
-        dispatch(receiveStops(json));
+        dispatch(setStops(json));
       });
       };
+}
+
+export function setSearchParams(searchParams: string) {
+    return {
+        searchParams,
+        type: constants.SET_SEARCH_PARAMS,
+    };
 }

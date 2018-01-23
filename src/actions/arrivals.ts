@@ -4,6 +4,7 @@ import extractArrivals from "../functions/extractArrivals";
 import { generateQuery } from "../functions/generateArrivalsQuery";
 import { IArrival, InterfacePlace } from "../types/types";
 import { addPlace } from "./places";
+import { setSearchParams, setStops } from "./search";
 
 export interface InterfaceRequestArrivals {
     type: constants.FETCH_ARRIVALS_REQUEST;
@@ -23,7 +24,6 @@ export type ArrivalAction = InterfaceRequestArrivals | InterfaceFetchArrivals | 
 
 // request for arrivals
 export function requestArrivals(): InterfaceRequestArrivals {
-    console.log("from requestArrivals");
     return {
         type: constants.FETCH_ARRIVALS_REQUEST,
     };
@@ -57,7 +57,11 @@ export function fetchArrivals(params: string[], newPlace?: InterfacePlace) {
         dispatch(receiveArrivals(json));
       })
       .then(() => {
-          if (addANewPlace) { dispatch(addPlace(newPlace)); }
+          if (addANewPlace) {
+            dispatch(setStops(null));
+            dispatch(setSearchParams(""));
+            dispatch(addPlace(newPlace));
+        }
         });
       };
 }

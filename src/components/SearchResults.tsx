@@ -18,17 +18,20 @@ interface IResultObject {
   [key: string]: string;
 }
 const BareResults = (props: ISearchResults) => {
+  if (props.results == null) {
+    return null;
+  }
   const noOfResults = props.results.length;
   if (noOfResults < 1) {
-    return <div>No stops found.</div>;
+    return <Div>No stops found.</Div>;
   }
   if (noOfResults > 8) {
-    return <div>{`${noOfResults} stops found`}</div>;
+    return <Div>{`${noOfResults} stops found`}</Div>;
   }
 
   const headerRow: React.ReactNode[] = [];
   Object.values(props.mappings).forEach((headerName: string, index: number) => headerRow.push(
-    <Column key={index} width="20%" align="left">
+    <Column key={"headerCol" + index} width="30%" align="left">
       {headerName}
     </Column>));
 
@@ -51,6 +54,7 @@ const BareResults = (props: ISearchResults) => {
     }
     resultRows.push(
       <ResultRow
+        key={rowId}
         rowId={rowId}
         data={Object.values(resultData)}
         select={props.select}
@@ -65,6 +69,10 @@ const BareResults = (props: ISearchResults) => {
   </div>
   );
 };
+
+const Div = styled.div`
+  font-family: ${(props) => props.theme.textFont};
+`;
 
 const SearchResults = styled(BareResults)`
   width: 100%;

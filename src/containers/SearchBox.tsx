@@ -55,13 +55,14 @@ export default class SearchBox extends React.Component<ISearchBoxProps, any> {
 }
 
 const Input = styled.input`
+  position: relative;
   font-family: ${(props) => props.theme.textFont};
   padding: 2px;
   margin: 0 0 0 1em;
   border-width: 0 0 2px 0;
   border-color: #000;
   &:focus {
-    background-color: ${(props) => props.theme.selectedBackgroundColor};
+    background-color: ${(props) => props.theme.lightBackgroundColor};
     outline: none;
   }
 `;

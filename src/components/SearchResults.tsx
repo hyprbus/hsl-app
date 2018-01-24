@@ -63,14 +63,17 @@ const BareResults = (props: ISearchResults) => {
       />);
   });
   return (
-  <div className={props.className}>
+  <Div className={props.className}>
     <Row>{headerRow}</Row>
     {resultRows}
-  </div>
+  </Div>
   );
 };
 
 const Div = styled.div`
+  position: absolute;
+  width: 100%;
+  background-color: ${(props) => props.theme.lightBackgroundColor};
   font-family: ${(props) => props.theme.textFont};
 `;
 

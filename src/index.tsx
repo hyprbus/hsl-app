@@ -5,6 +5,7 @@ import { applyMiddleware, createStore } from "redux";
 import thunk from "redux-thunk";
 import { ThemeProvider } from "styled-components";
 import Header from "./components/Header";
+import Page from "./components/Page";
 import PlacesContainer from "./containers/PlacesContainer";
 import SearchContainer from "./containers/SearchContainer";
 import rootReducer from "./reducers/reducers";
@@ -16,11 +17,11 @@ const store = createStore<InterfaceStoreState>(rootReducer, applyMiddleware(thun
 ReactDOM.render(
             <Provider store={store}>
                 <ThemeProvider theme={theme} >
-                    <div>
+                    <Page>
                         <Header text="HSL Helper" />
                         <SearchContainer />
                         <PlacesContainer />
-                    </div>
+                    </Page>
                 </ThemeProvider>
             </Provider>,
     document.getElementById("root"),

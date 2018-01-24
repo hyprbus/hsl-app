@@ -50,12 +50,8 @@ export function fetchArrivals(params: string[], newPlace?: InterfacePlace) {
         method: "POST",
       })
       .then((response) => response.json())
-      .then((data) => {
-        return extractArrivals(data);
-      })
-      .then((json) => {
-        dispatch(receiveArrivals(json));
-      })
+      .then(extractArrivals)
+      .then((json) => dispatch(receiveArrivals(json)))
       .then(() => {
           if (addANewPlace) {
             dispatch(setStops(null));

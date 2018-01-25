@@ -34,12 +34,15 @@ export default class SearchBox extends React.Component<ISearchBoxProps, any> {
   public render() {
     // filter results
     return (
-      <div className={this.props.className}>
+      <Box className={this.props.className}>
         <Form onSubmit={(e) => { e.preventDefault(); }} >
           <label>
             Find stops:
           </label>
-          <Input type="text" onChange={this.handleChange} value={this.props.searchParams}>
+          <Input
+            type="text"
+            onChange={this.handleChange}
+            value={this.props.searchParams}>
           </Input>
         </Form>
         <SearchResults
@@ -49,13 +52,12 @@ export default class SearchBox extends React.Component<ISearchBoxProps, any> {
           selectedIds={this.props.selectedIds}
           select={this.props.selectResult}
         />
-      </div>
+      </Box>
     );
   }
 }
 
 const Input = styled.input`
-  position: relative;
   font-family: ${(props) => props.theme.textFont};
   padding: 2px;
   margin: 0 0 0 1em;
@@ -70,4 +72,9 @@ const Input = styled.input`
 const Form = styled.form`
   font-family: ${(props) => props.theme.textFont};
   margin: 0 0 1em 0;
+`;
+
+const Box = styled.div`
+  position: relative;
+  width: 100%;
 `;

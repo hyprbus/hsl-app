@@ -26,7 +26,7 @@ const BareResults = (props: ISearchResults) => {
     return <Div>No stops found.</Div>;
   }
   if (noOfResults > 8) {
-    return <Div>{`${noOfResults} stops found`}</Div>;
+    return <Div>{`${noOfResults} stops found.`}</Div>;
   }
 
   const headerRow: React.ReactNode[] = [];
@@ -71,14 +71,15 @@ const BareResults = (props: ISearchResults) => {
 };
 
 const Div = styled.div`
+  width: 98%;
   position: absolute;
-  width: 100%;
+  padding: 1%;
   background-color: ${(props) => props.theme.lightBackgroundColor};
   font-family: ${(props) => props.theme.textFont};
 `;
 
 const SearchResults = styled(BareResults)`
-  width: 100%;
+  width: 98%;
 `;
 
 export default SearchResults;

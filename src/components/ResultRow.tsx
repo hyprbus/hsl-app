@@ -18,7 +18,7 @@ const BareResultRow = (props: IResultRowProps) => {
   const columns: React.ReactNode[] = [];
   props.data.forEach((item, i) => {
     columns.push(
-      <Column key={i} width="100%" align="left">
+      <Column key={i} width="50%" align="left">
           {item}
       </Column>,
     );

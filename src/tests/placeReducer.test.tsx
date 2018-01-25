@@ -6,10 +6,10 @@ import { InterfacePlace, InterfacePlacesState } from "../types/types";
 // see https://rjzaworski.com/2016/12/testing-typescript-with-jest
 
 const initialState: InterfacePlace[] = [];
-const testPlace = {id: "HSL:1011310", address: "Address", name: "Name", customName: "Custom Name"};
+const testPlace = { id: "HSL:1011310", address: "Address", name: "Name", customName: "Custom Name" };
 const place1: PlaceAction = addPlace(testPlace.id, testPlace.name, testPlace.address, testPlace.customName);
 
-const bogusAction = {type: "FOO_BAR", id: "HSL:1011310", address: "Address", name: "Name", customName: "Custom Name"}
+const bogusAction = { type: "FOO_BAR", id: "HSL:1011310", address: "Address", name: "Name", customName: "Custom Name" }
 
 // add a new place:
 // return current state of places plus new place

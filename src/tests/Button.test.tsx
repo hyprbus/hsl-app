@@ -5,7 +5,7 @@ import Button from "../components/Button";
 describe("Todo component renders the todo correctly", () => {
   it("renders correctly", () => {
     const label = "Test Label";
-    const rendered = renderer.create (
+    const rendered = renderer.create(
       <Button label={label} />,
     );
     expect(rendered.toJSON()).toMatchSnapshot();

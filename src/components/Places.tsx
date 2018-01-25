@@ -45,5 +45,6 @@ export default class BarePlaces extends React.Component<InterfacePlacesProps, an
         </div>);
       });
       return <PlacesDiv>{list}</PlacesDiv>;
-  }}
+    }
+  }
 }

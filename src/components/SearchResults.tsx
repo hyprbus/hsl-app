@@ -31,7 +31,7 @@ const BareResults = (props: ISearchResults) => {
 
   const headerRow: React.ReactNode[] = [];
   Object.values(props.mappings).forEach((headerName: string, index: number) => headerRow.push(
-    <Column key={"headerCol" + index} width="30%" align="left">
+    <Column key={"headerCol" + index} width="90%" align="left">
       {headerName}
     </Column>));
 
@@ -63,10 +63,10 @@ const BareResults = (props: ISearchResults) => {
       />);
   });
   return (
-  <Div className={props.className}>
-    <Row>{headerRow}</Row>
-    {resultRows}
-  </Div>
+    <Div className={props.className}>
+      <Row>{headerRow}</Row>
+      {resultRows}
+    </Div>
   );
 };
 
@@ -78,7 +78,7 @@ const Div = styled.div`
   font-family: ${(props) => props.theme.textFont};
 `;
 
-const SearchResults = styled(BareResults)`
+const SearchResults = styled(BareResults) `
   width: 98%;
 `;
 

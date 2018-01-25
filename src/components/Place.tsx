@@ -24,7 +24,7 @@ const BarePlace = (props: InterfacePlaceProps) =>
     {props.children}
   </Row>;
 
-const Place = styled(BarePlace)`
+const Place = styled(BarePlace) `
   background-color: ${(props) => props.theme.backgroundColor};
   font-family: ${(props) => props.theme.textFont};
   margin: .5em 0 .25em 0;

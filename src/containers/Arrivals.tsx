@@ -33,13 +33,13 @@ const BareArrivals = (props: InterfaceArrivalsDiv) => {
     );
   });
   return (
-  <div className={props.className}>
-    {filteredArrivals}
-  </div>
+    <div className={props.className}>
+      {filteredArrivals}
+    </div>
   );
 };
 
-const Arrivals = styled(BareArrivals)`
+const Arrivals = styled(BareArrivals) `
   font-size: 1em;
   color: ${(props) => props.theme.textColor};
   font-family: ${(props) => props.theme.textFont};

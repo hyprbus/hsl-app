@@ -15,21 +15,20 @@ let initialPlaces: InterfacePlace[] = [];
 
 const placesCookie: string = (getCookie("places"));
 if (placesCookie.length > 1) {
-    initialPlaces = JSON.parse(placesCookie);
+  initialPlaces = JSON.parse(placesCookie);
 }
-
 export function placeReducer(state: InterfacePlace[] = initialPlaces, action: PlaceAction): InterfacePlace[] {
   switch (action.type) {
     case ADD_PLACE:
       return [
         ...state,
-          action.place,
+        action.place,
       ];
     case DELETE_PLACE:
       const index = state.findIndex((x: InterfacePlace) => x.id === action.id);
       return [
-          ...state.slice(0, index),
-          ...state.slice(index + 1),
+        ...state.slice(0, index),
+        ...state.slice(index + 1),
       ];
     default:
       return state;

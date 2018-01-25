@@ -17,7 +17,7 @@ type ISearchContainer = InterfaceSearchParams & IDataMapper;
 type ISearchInputData = InterfacePlacesState & InterfaceSearchState;
 
 // define which results object keys to display and their corresponding column names
-const mapResults: object = {address: "Address", code: "Code", name: "Name"};
+const mapResults: object = { name: "Name", address: "Address", code: "Code" };
 
 // which object key is the id key (required when selecting a result row and calling a callback function)
 const idKeyName: string = "id";

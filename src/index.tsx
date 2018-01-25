@@ -15,14 +15,14 @@ import { InterfaceStoreState } from "./types/types";
 const store = createStore<InterfaceStoreState>(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
-            <Provider store={store}>
-                <ThemeProvider theme={theme} >
-                    <Page>
-                        <Header text="HSL Helper" />
-                        <SearchContainer />
-                        <PlacesContainer />
-                    </Page>
-                </ThemeProvider>
-            </Provider>,
-    document.getElementById("root"),
+  <Provider store={store}>
+    <ThemeProvider theme={theme} >
+      <Page>
+        <Header text="HSL Helper" />
+        <SearchContainer />
+        <PlacesContainer />
+      </Page>
+    </ThemeProvider>
+  </Provider>,
+  document.getElementById("root"),
 );

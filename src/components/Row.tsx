@@ -14,7 +14,7 @@ const BareRow = (props: IRow) => {
   );
 };
 
-const Row = styled(BareRow)`
+const Row = styled(BareRow) `
   display: flex;
   flex-wrap: wrap;
   font-size: 1em;

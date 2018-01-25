@@ -11,16 +11,16 @@ export interface InterfaceArrivalsProps {
   waitTime: number;
 }
 
-const BareArrival = ( props: InterfaceArrivalsProps ) => {
+const BareArrival = (props: InterfaceArrivalsProps) => {
   return (
-  <Row className={props.className}>
-    <Column width="25%" align="left" >{`${props.waitTime}mins`}</Column>
-    <Column width="50%" align="left">{props.patternName}</Column>
-    <Column width="25%" align="right">{props.arrivalTime}</Column>
-  </Row>);
+    <Row className={props.className}>
+      <Column width="25%" align="left" >{`${props.waitTime}mins`}</Column>
+      <Column width="50%" align="left">{props.patternName}</Column>
+      <Column width="25%" align="right">{props.arrivalTime}</Column>
+    </Row>);
 };
 
-const Arrival = styled(BareArrival)`
+const Arrival = styled(BareArrival) `
   &:nth-child(even) {
   background-color: ${(props) => props.theme.alternateBackgroundColor};
   }

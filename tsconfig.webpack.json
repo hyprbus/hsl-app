@@ -1,18 +1,22 @@
 {
-    "compilerOptions": {
-        "outDir": "./dist/",
-        "sourceMap": true,
-        "noImplicitAny": true,
-        "module": "commonjs",
-        "target": "es6",
-        "jsx": "react",
-        "lib": ["es6", "dom", "esnext"],
-        "strictFunctionTypes": false
-    },
-    "include": [
-        "./src/**/*"
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "target": "es6",
+    "jsx": "react",
+    "lib": [
+      "es6",
+      "dom",
+      "esnext"
     ],
-    "exclude": [
-        "./src/tests/**/*"
-    ]
+    "strictFunctionTypes": false
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "./src/tests/**/*"
+  ]
 }

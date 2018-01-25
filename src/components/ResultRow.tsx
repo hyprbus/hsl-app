@@ -18,8 +18,8 @@ const BareResultRow = (props: IResultRowProps) => {
   const columns: React.ReactNode[] = [];
   props.data.forEach((item, i) => {
     columns.push(
-      <Column key={i} width="50%" align="left">
-          {item}
+      <Column key={i} width="95%" align="left">
+        {item}
       </Column>,
     );
   });
@@ -29,28 +29,26 @@ const BareResultRow = (props: IResultRowProps) => {
       <Row className={props.className}>
         {columns}
       </Row>
-      );
+    );
   } else {
-      const newPlace: InterfacePlace = {
-        address: props.data[1],
-        code: props.data[2],
-        customName: props.data[2] + " " + props.data[0],
-        id: props.rowId,
-        name: props.data[0],
-      };
-      return (
+    const newPlace: InterfacePlace = {
+      address: props.data[1],
+      code: props.data[2],
+      customName: props.data[2] + " " + props.data[0],
+      id: props.rowId,
+      name: props.data[0],
+    };
+    return (
+      <div onClick={() => props.select(props.selectedIds, newPlace)}>
         <Row className={props.className}>
-          <div
-            onClick={() => props.select(props.selectedIds, newPlace)}
-          >
-            {columns}
-          </div>
+          {columns}
         </Row>
-        );
+      </div>
+    );
   }
 };
 
-const ResultRow = styled(BareResultRow)`
+const ResultRow = styled(BareResultRow) `
   background-color: ${(props) => props.theme.backgroundColor};
   font-family: ${(props) => props.theme.textFont};
   margin: 0 0 .25em 0;

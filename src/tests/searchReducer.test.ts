@@ -1,4 +1,4 @@
-import { fetchStops, InterfaceRequestStops, receiveStops, requestStops, SearchAction } from "../actions/search";
+import { fetchStops, InterfaceRequestStops, requestStops, SearchAction, setStops } from "../actions/search";
 import { setSearchParamsReducer } from "../reducers/searchReducer";
 // import { InterfacePlace, InterfaceSearchState } from "../types/types";
 

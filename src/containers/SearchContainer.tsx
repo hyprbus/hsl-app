@@ -7,6 +7,7 @@ import SearchBox from "./SearchBox";
 
 interface IDataMapper {
   mappings: object;
+  searchStringMinLength: number;
   selectedIds: string[]; // supply a list of the search results that have been previously selected
   results: object[];
   idKeyName: string;
@@ -31,16 +32,16 @@ const mapStateToProps = ({ places, searchParams, foundStops, fetchingStops }: IS
     mappings: mapResults,
     results: foundStops,
     searchParams,
+    searchStringMinLength: 5,
     selectedIds,
   };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<actions.SearchAction>) => {
   return {
-    fetchResults: (searchString: string) => { dispatch(actions.fetchStops(searchString)); },
-    selectResult: (currentStops: string[], place: InterfacePlace) => {
-      dispatch(fetchArrivals(currentStops, place));
-    },
+    fetchResults: (searchString: string) => dispatch(actions.fetchStops(searchString)),
+    selectResult: (currentStops: string[], place: InterfacePlace) => dispatch(fetchArrivals(currentStops, place)),
+    setSearchParams: (p: string) => dispatch(actions.setSearchParams(p)),
   };
 };
 

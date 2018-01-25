@@ -1,5 +1,5 @@
 import * as React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { InterfacePlace } from "../types/types";
 import Column from "./Column";
 import Row from "./Row";
@@ -16,12 +16,10 @@ export interface IResultRowProps {
 // take a string[] and create a column for each field
 const BareResultRow = (props: IResultRowProps) => {
   const columns: React.ReactNode[] = [];
-  props.data.forEach((item) => {
+  props.data.forEach((item, i) => {
     columns.push(
-      <Column width="20%" align="left">
-        <div>
+      <Column key={i} width="50%" align="left">
           {item}
-        </div>
       </Column>,
     );
   });
@@ -29,7 +27,7 @@ const BareResultRow = (props: IResultRowProps) => {
   if (!props.selectable) {
     return (
       <Row className={props.className}>
-        <div>{columns}</div>
+        {columns}
       </Row>
       );
   } else {
@@ -56,7 +54,13 @@ const ResultRow = styled(BareResultRow)`
   background-color: ${(props) => props.theme.backgroundColor};
   font-family: ${(props) => props.theme.textFont};
   margin: 0 0 .25em 0;
-  font-style: ${(props) => props.selectable ? "normal" : "italic"};
+  font-style: normal;
+  cursor: pointer;
+  ${(props) => !props.selectable && css`
+    font-style: italic;
+    cursor: default;
+    background-color: ${props.theme.notSelectableBackgroundColor};
+  `}
 `;
 
 export default ResultRow;

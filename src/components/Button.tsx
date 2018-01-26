@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
-export interface  InterfaceButton {
+export interface InterfaceButton {
   action?: () => void;
   className?: string;
   label: string;
@@ -16,7 +16,7 @@ const BareButton = (props: InterfaceButton) => (
   </div>
 );
 
-const Button = styled(BareButton)`
+const Button = styled(BareButton) `
   flex: 1;
   cursor: pointer;
   color: ${(props) => props.theme.textColor};

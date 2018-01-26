@@ -16,7 +16,7 @@ const BareColumn = (props: IColumn) => {
   );
 };
 
-const Column = styled(BareColumn)`
+const Column = styled(BareColumn) `
   flex: 1;
   min-width: ${(props) => props.width};
   max-width: ${(props) => props.width};

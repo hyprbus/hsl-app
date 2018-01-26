@@ -2,7 +2,7 @@ import arrayToString from "../functions/arrayToString";
 
 // ["HSL:1140105", "HSL:1230407",  "HSL:1040144"] => '"HSL:1140105", "HSL:1230407",  "HSL:1040144"'
 
-const array1 = ["HSL:1140105", "HSL:1230407",  "HSL:1040144"];
+const array1 = ["HSL:1140105", "HSL:1230407", "HSL:1040144"];
 const result1 = '"HSL:1140105","HSL:1230407","HSL:1040144"';
 const array2 = ["HSL:1140105"];
 const result2 = '"HSL:1140105"';

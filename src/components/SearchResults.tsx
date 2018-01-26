@@ -11,7 +11,7 @@ export interface ISearchResults {
   results: object[];
   mappings: object;
   selectedIds: string[];
-  select: (selectedIds: string[], place: InterfacePlace) => void;
+  select: (place: InterfacePlace) => void;
 }
 
 interface IResultObject {
@@ -30,10 +30,13 @@ const BareResults = (props: ISearchResults) => {
   }
 
   const headerRow: React.ReactNode[] = [];
-  Object.values(props.mappings).forEach((headerName: string, index: number) => headerRow.push(
-    <Column key={"headerCol" + index} width="30%" align="left">
-      {headerName}
-    </Column>));
+  Object.values(props.mappings).forEach((headerName: string, index: number) =>
+    headerRow.push(
+      <Column key={"headerCol" + index} width="90%" align="left">
+        {headerName}
+      </Column>
+    )
+  );
 
   const resultRows: React.ReactNode[] = [];
   props.results.forEach((result: IResultObject) => {
@@ -60,13 +63,14 @@ const BareResults = (props: ISearchResults) => {
         select={props.select}
         selectedIds={props.selectedIds}
         selectable={rowIsSelectable}
-      />);
+      />
+    );
   });
   return (
-  <Div className={props.className}>
-    <Row>{headerRow}</Row>
-    {resultRows}
-  </Div>
+    <Div className={props.className}>
+      <Row>{headerRow}</Row>
+      {resultRows}
+    </Div>
   );
 };
 
@@ -74,8 +78,8 @@ const Div = styled.div`
   width: 98%;
   position: absolute;
   padding: 1%;
-  background-color: ${(props) => props.theme.lightBackgroundColor};
-  font-family: ${(props) => props.theme.textFont};
+  background-color: ${props => props.theme.lightBackgroundColor};
+  font-family: ${props => props.theme.textFont};
 `;
 
 const SearchResults = styled(BareResults)`

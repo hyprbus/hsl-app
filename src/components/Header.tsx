@@ -13,7 +13,7 @@ const BareHeader = (props: InterfaceHeaderProps) =>
     {props.text}
   </h1>;
 
-const Header = styled(BareHeader)`
+const Header = styled(BareHeader) `
   margin: 0 0 .5em 0;
   color: ${(props) => props.theme.textColor};
   font-family: ${(props) => props.theme.textFont};

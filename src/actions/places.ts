@@ -12,19 +12,34 @@ export interface InterfaceDeletePlace {
   type: constants.DELETE_PLACE;
 }
 
-export type PlaceAction = InterfaceAddPlace | InterfaceDeletePlace;
+export interface InterfaceSelectPlace {
+  place: InterfacePlace;
+  type: constants.SELECT_PLACE;
+}
+
+export type PlaceAction =
+  | InterfaceAddPlace
+  | InterfaceDeletePlace
+  | InterfaceSelectPlace;
 
 // tslint:disable-next-line:max-line-length
 export function addPlace(place: InterfacePlace): InterfaceAddPlace {
   return {
     place,
-    type: constants.ADD_PLACE,
+    type: constants.ADD_PLACE
   };
 }
 
 export function deletePlace(id: string): InterfaceDeletePlace {
   return {
     id,
-    type: constants.DELETE_PLACE,
+    type: constants.DELETE_PLACE
+  };
+}
+
+export function selectPlace(place: InterfacePlace): InterfaceSelectPlace {
+  return {
+    place,
+    type: constants.SELECT_PLACE
   };
 }

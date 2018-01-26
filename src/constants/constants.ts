@@ -4,6 +4,9 @@ export type ADD_PLACE = typeof ADD_PLACE;
 export const DELETE_PLACE = "DELETE_PLACE";
 export type DELETE_PLACE = typeof DELETE_PLACE;
 
+export const SELECT_PLACE = "SELECT_PLACE";
+export type SELECT_PLACE = typeof SELECT_PLACE;
+
 export const FETCH_ARRIVALS_REQUEST = "FETCH_ARRIVALS_REQUEST";
 export type FETCH_ARRIVALS_REQUEST = typeof FETCH_ARRIVALS_REQUEST;
 
@@ -24,3 +27,9 @@ export type FETCH_STOPS_SUCCESS = typeof FETCH_STOPS_SUCCESS;
 
 export const SET_SEARCH_PARAMS = "SET_SEARCH_PARAMS";
 export type SET_SEARCH_PARAMS = typeof SET_SEARCH_PARAMS;
+
+export const HIDE_MODAL = "HIDE_MODAL";
+export type HIDE_MODAL = typeof HIDE_MODAL;
+
+export const SHOW_MODAL = "SHOW_MODAL";
+export type SHOW_MODAL = typeof SHOW_MODAL;

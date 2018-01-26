@@ -10,7 +10,7 @@ export interface IResultRowProps {
   className?: string;
   selectable: boolean;
   selectedIds: string[];
-  select?: (selectedIds: string[], place: InterfacePlace) => void;
+  select?: (place: InterfacePlace) => void;
 }
 
 // take a string[] and create a column for each field
@@ -20,45 +20,41 @@ const BareResultRow = (props: IResultRowProps) => {
     columns.push(
       <Column key={i} width="95%" align="left">
         {item}
-      </Column>,
+      </Column>
     );
   });
   // if a search row is already in my selected items, make it unclickable
   if (!props.selectable) {
-    return (
-      <Row className={props.className}>
-        {columns}
-      </Row>
-    );
+    return <Row className={props.className}>{columns}</Row>;
   } else {
     const newPlace: InterfacePlace = {
       address: props.data[1],
       code: props.data[2],
       customName: props.data[2] + " " + props.data[0],
       id: props.rowId,
-      name: props.data[0],
+      name: props.data[0]
     };
     return (
-      <div onClick={() => props.select(props.selectedIds, newPlace)}>
-        <Row className={props.className}>
-          {columns}
-        </Row>
+      <div onClick={() => props.select(newPlace)}>
+        <Row className={props.className}>{columns}</Row>
       </div>
     );
   }
 };
 
-const ResultRow = styled(BareResultRow) `
-  background-color: ${(props) => props.theme.backgroundColor};
-  font-family: ${(props) => props.theme.textFont};
-  margin: 0 0 .25em 0;
+const ResultRow = styled(BareResultRow)`
+  background-color: ${props => props.theme.backgroundColor};
+  font-family: ${props => props.theme.textFont};
+  margin: 0 0 0.25em 0;
   font-style: normal;
   cursor: pointer;
-  ${(props) => !props.selectable && css`
-    font-style: italic;
-    cursor: default;
-    background-color: ${props.theme.notSelectableBackgroundColor};
-  `}
+  ${props =>
+    !props.selectable &&
+    css`
+      font-style: italic;
+      cursor: default;
+      background-color: ${props.theme.notSelectableBackgroundColor};
+    `};
 `;
 
 export default ResultRow;

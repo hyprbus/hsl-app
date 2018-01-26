@@ -4,10 +4,15 @@ export interface InterfacePlace {
   customName?: string;
   id: string;
   name: string;
+  [key: string]: string;
 }
 
 export interface InterfacePlacesState {
   places: InterfacePlace[];
+}
+
+export interface ISelectedPlace {
+  selectedPlace: InterfacePlace;
 }
 
 export interface IArrival {
@@ -32,9 +37,18 @@ export interface InterfaceSearchResults {
   foundStops: InterfacePlace[];
 }
 
-export type InterfaceSearchState = InterfaceSearchParams & InterfaceSearchResults;
+interface IModalState {
+  modalVisible: boolean;
+}
 
-export type InterfaceStoreState = InterfacePlacesState & InterfaceArrivalsState & InterfaceSearchState;
+export type InterfaceSearchState = InterfaceSearchParams &
+  InterfaceSearchResults;
+
+export type InterfaceStoreState = InterfacePlacesState &
+  InterfaceArrivalsState &
+  InterfaceSearchState &
+  IModalState &
+  ISelectedPlace;
 
 // interfaces for arrivals data object received from server:
 

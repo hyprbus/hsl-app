@@ -7,24 +7,21 @@ import {
   InterfacePlace,
   InterfacePlacesState,
   InterfaceSearchParams,
-  InterfaceSearchState,
-  ISelectedPlace
+  InterfaceSearchState
 } from "../types/types";
-import SearchBox from "./SearchBox";
+import SearchBox, { ISearchBoxProps } from "./SearchBox";
 
 interface IDataMapper {
+  error: string;
   mappings: object;
   searchStringMinLength: number;
   selectedIds: string[]; // supply a list of the search results that have been previously selected
-  selectedPlace: InterfacePlace;
   results: object[];
   idKeyName: string;
 }
 
 type ISearchContainer = InterfaceSearchParams & IDataMapper;
-type ISearchInputData = InterfacePlacesState &
-  ISelectedPlace &
-  InterfaceSearchState;
+type ISearchInputData = InterfacePlacesState & InterfaceSearchState;
 
 // define which results object keys to display and their corresponding column names
 const mapResults: object = { name: "Name", address: "Address", code: "Code" };
@@ -32,25 +29,24 @@ const mapResults: object = { name: "Name", address: "Address", code: "Code" };
 // which object key is the id key (required when selecting a result row and calling a callback function)
 const idKeyName: string = "id";
 
-// tslint:disable-next-line:max-line-length
 const mapStateToProps = ({
   places,
   searchParams,
   foundStops,
   fetchingStops,
-  selectedPlace
+  stopError
 }: ISearchInputData): ISearchContainer => {
   const selectedIds: string[] = [];
   places.forEach(stop => selectedIds.push(stop.id.toString()));
   return {
+    error: stopError,
     fetchingStops,
     idKeyName,
     mappings: mapResults,
     results: foundStops,
     searchParams,
     searchStringMinLength: 5,
-    selectedIds,
-    selectedPlace
+    selectedIds
   };
 };
 

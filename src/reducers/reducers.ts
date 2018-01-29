@@ -9,7 +9,8 @@ import { placeReducer, selectedPlaceReducer } from "./placeReducer";
 import {
   fetchingStopsReducer,
   foundStopsReducer,
-  setSearchParamsReducer
+  setSearchParamsReducer,
+  stopErrorReducer
 } from "./searchReducer";
 
 type Action = ArrivalAction | PlaceAction | SearchAction;
@@ -22,7 +23,8 @@ const rootReducer: Reducer<InterfaceStoreState> = combineReducers({
   modalVisible: modalReducer,
   places: placeReducer,
   searchParams: setSearchParamsReducer,
-  selectedPlace: selectedPlaceReducer
+  selectedPlace: selectedPlaceReducer,
+  stopError: stopErrorReducer
 });
 
 export default rootReducer;

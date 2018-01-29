@@ -37,12 +37,17 @@ export interface InterfaceSearchResults {
   foundStops: InterfacePlace[];
 }
 
+export interface ISearchError {
+  stopError: string;
+}
+
 interface IModalState {
   modalVisible: boolean;
 }
 
 export type InterfaceSearchState = InterfaceSearchParams &
-  InterfaceSearchResults;
+  InterfaceSearchResults &
+  ISearchError;
 
 export type InterfaceStoreState = InterfacePlacesState &
   InterfaceArrivalsState &

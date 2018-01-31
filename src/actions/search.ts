@@ -19,19 +19,37 @@ export interface InterfaceReceiveStops {
   type: constants.FETCH_STOPS_SUCCESS;
 }
 
+export interface InterfaceReceiveStopsFailed {
+  stopError: string;
+  type: constants.FETCH_STOPS_FAILURE;
+}
+
 export interface InterfaceSetSearchParams {
   searchParams: string;
   type: constants.SET_SEARCH_PARAMS;
 }
 
 // tslint:disable-next-line:max-line-length
-export type SearchAction = InterfaceRequestStops | InterfaceFetchStops | InterfaceReceiveStops | InterfaceSetSearchParams;
+export type SearchAction =
+  | InterfaceRequestStops
+  | InterfaceFetchStops
+  | InterfaceReceiveStops
+  | InterfaceReceiveStopsFailed
+  | InterfaceSetSearchParams;
 
 // request for stops
 export function requestStops(params: string): InterfaceRequestStops {
   return {
     searchParams: params,
-    type: constants.FETCH_STOPS_REQUEST,
+    type: constants.FETCH_STOPS_REQUEST
+  };
+}
+
+// receive stops
+export function setStopFetchError(error: string): InterfaceReceiveStopsFailed {
+  return {
+    stopError: error,
+    type: constants.FETCH_STOPS_FAILURE
   };
 }
 
@@ -39,7 +57,7 @@ export function requestStops(params: string): InterfaceRequestStops {
 export function setStops(foundStops: InterfacePlace[]): InterfaceReceiveStops {
   return {
     foundStops,
-    type: constants.FETCH_STOPS_SUCCESS,
+    type: constants.FETCH_STOPS_SUCCESS
   };
 }
 
@@ -47,25 +65,34 @@ export function setStops(foundStops: InterfacePlace[]): InterfaceReceiveStops {
 export function fetchStops(params: string) {
   return (dispatch: Dispatch<Action>) => {
     dispatch(requestStops(params));
-    return fetch("https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql",
+    return fetch(
+      "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql",
       {
         body: JSON.stringify({ query: generateSearchQuery(params) }),
         headers: { "Content-Type": "application/json" },
-        method: "POST",
-      })
-      .then((response) => response.json())
-      .then((data) => {
-        return extractStops(data);
-      })
-      .then((json) => {
-        dispatch(setStops(json));
-      });
+        method: "POST"
+      }
+    ).then(
+      response => {
+        if (response.ok) {
+          response.json().then(json => {
+            dispatch(setStopFetchError(""));
+            dispatch(setStops(extractStops(json)));
+          });
+        } else {
+          dispatch(setStopFetchError(response.statusText));
+        }
+      },
+      error => {
+        dispatch(setStopFetchError(error.toString()));
+      }
+    );
   };
 }
 
 export function setSearchParams(searchParams: string) {
   return {
     searchParams,
-    type: constants.SET_SEARCH_PARAMS,
+    type: constants.SET_SEARCH_PARAMS
   };
 }

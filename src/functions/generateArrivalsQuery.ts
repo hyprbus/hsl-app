@@ -2,7 +2,7 @@
 // return string
 import arrayToString from "./arrayToString";
 
-export const generateQuery = (parameters: string[]): string => {
+export const generateArrivalsQuery = (parameters: string[]): string => {
   return `{
     stops(ids: [${arrayToString(parameters)}]) {
           name

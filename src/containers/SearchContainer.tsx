@@ -12,7 +12,7 @@ import {
 import SearchBox, { ISearchBoxProps } from "./SearchBox";
 
 interface IDataMapper {
-  error: string;
+  errorMsg: string;
   mappings: object;
   searchStringMinLength: number;
   selectedIds: string[]; // supply a list of the search results that have been previously selected
@@ -39,7 +39,7 @@ const mapStateToProps = ({
   const selectedIds: string[] = [];
   places.forEach(stop => selectedIds.push(stop.id.toString()));
   return {
-    error: stopError,
+    errorMsg: stopError,
     fetchingStops,
     idKeyName,
     mappings: mapResults,

@@ -1,4 +1,4 @@
-import { SearchAction } from "../actions/search";
+import { InterfaceReceiveStopsFailed, SearchAction } from "../actions/search";
 import {
   FETCH_STOPS_FAILURE,
   FETCH_STOPS_REQUEST,
@@ -22,7 +22,7 @@ export function foundStopsReducer(
 
 export function stopErrorReducer(
   state: string = "",
-  action: SearchAction
+  action: InterfaceReceiveStopsFailed
 ): string {
   switch (action.type) {
     case FETCH_STOPS_FAILURE:

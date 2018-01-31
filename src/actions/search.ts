@@ -72,18 +72,21 @@ export function fetchStops(params: string) {
         headers: { "Content-Type": "application/json" },
         method: "POST"
       }
-    )
-      .then(response => response.json())
-      .catch(error => {
-        dispatch(setStopFetchError(error));
-        console.log("Fetch error:", error);
-      })
-      .then(data => {
-        return extractStops(data);
-      })
-      .then(json => {
-        dispatch(setStops(json));
-      });
+    ).then(
+      response => {
+        if (response.ok) {
+          response.json().then(json => {
+            dispatch(setStopFetchError(""));
+            dispatch(setStops(extractStops(json)));
+          });
+        } else {
+          dispatch(setStopFetchError(response.statusText));
+        }
+      },
+      error => {
+        dispatch(setStopFetchError(error.toString()));
+      }
+    );
   };
 }
 

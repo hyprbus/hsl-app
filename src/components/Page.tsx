@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Page = styled.div`
   margin: 0 auto 0 auto;
-  max-width: 600px;
+  max-width: ${props => props.theme.breakPoint};
 `;
 
 export default Page;

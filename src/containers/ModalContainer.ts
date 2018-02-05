@@ -11,6 +11,7 @@ const mapStateToProps = ({
   selectedPlace
 }: InterfaceStoreState) => {
   return {
+    inputDescription: "Place name (optional)",
     label: "Add place to list",
     ownName: "customName",
     selectedIds: places.map((p: InterfacePlace) => p.id),

@@ -3,6 +3,7 @@ import * as constants from "../constants/constants";
 import extractStops from "../functions/extractStops";
 import { generateSearchQuery } from "../functions/generateSearchQuery";
 import { InterfacePlace } from "../types/types";
+import { addError, clearError } from "./errors";
 
 export interface InterfaceRequestStops {
   type: constants.FETCH_STOPS_REQUEST;
@@ -20,7 +21,6 @@ export interface InterfaceReceiveStops {
 }
 
 export interface InterfaceReceiveStopsFailed {
-  stopError: string;
   type: constants.FETCH_STOPS_FAILURE;
 }
 
@@ -29,7 +29,6 @@ export interface InterfaceSetSearchParams {
   type: constants.SET_SEARCH_PARAMS;
 }
 
-// tslint:disable-next-line:max-line-length
 export type SearchAction =
   | InterfaceRequestStops
   | InterfaceFetchStops
@@ -45,10 +44,9 @@ export function requestStops(params: string): InterfaceRequestStops {
   };
 }
 
-// receive stops
-export function setStopFetchError(error: string): InterfaceReceiveStopsFailed {
+// receive stops failed
+export function receiveStopsFailed(): InterfaceReceiveStopsFailed {
   return {
-    stopError: error,
     type: constants.FETCH_STOPS_FAILURE
   };
 }
@@ -76,15 +74,17 @@ export function fetchStops(params: string) {
       response => {
         if (response.ok) {
           response.json().then(json => {
-            dispatch(setStopFetchError(""));
+            dispatch(clearError());
             dispatch(setStops(extractStops(json)));
           });
         } else {
-          dispatch(setStopFetchError(response.statusText));
+          dispatch(receiveStopsFailed());
+          dispatch(addError(response.statusText));
         }
       },
       error => {
-        dispatch(setStopFetchError(error.toString()));
+        dispatch(receiveStopsFailed());
+        dispatch(addError(error.toString()));
       }
     );
   };

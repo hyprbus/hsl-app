@@ -37,8 +37,8 @@ export interface InterfaceSearchResults {
   foundStops: InterfacePlace[];
 }
 
-export interface ISearchError {
-  stopError: string;
+export interface IError {
+  errorMessage: string;
 }
 
 interface IModalState {
@@ -46,11 +46,11 @@ interface IModalState {
 }
 
 export type InterfaceSearchState = InterfaceSearchParams &
-  InterfaceSearchResults &
-  ISearchError;
+  InterfaceSearchResults;
 
 export type InterfaceStoreState = InterfacePlacesState &
   InterfaceArrivalsState &
+  IError &
   InterfaceSearchState &
   IModalState &
   ISelectedPlace;

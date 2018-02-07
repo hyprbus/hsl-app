@@ -33,3 +33,9 @@ export type HIDE_MODAL = typeof HIDE_MODAL;
 
 export const SHOW_MODAL = "SHOW_MODAL";
 export type SHOW_MODAL = typeof SHOW_MODAL;
+
+export const ADD_ERROR = "ADD_ERROR";
+export type ADD_ERROR = typeof ADD_ERROR;
+
+export const CLEAR_ERROR = "CLEAR_ERROR";
+export type CLEAR_ERROR = typeof CLEAR_ERROR;

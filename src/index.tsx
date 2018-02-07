@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { applyMiddleware, createStore } from "redux";
 import thunk from "redux-thunk";
 import { ThemeProvider } from "styled-components";
+import ErrorContainer from "./containers/ErrorContainer";
 import Header from "./components/Header";
 import Page from "./components/Page";
 import ModalContainer from "./containers/ModalContainer";
@@ -22,6 +23,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
       <Page>
+        <ErrorContainer />
         <Header text="HSL Helper" />
         <SearchContainer />
         <PlacesContainer />

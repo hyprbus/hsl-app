@@ -27,6 +27,7 @@ export default class SearchBox extends React.Component<IModal, any> {
     this.cancelModal = this.cancelModal.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
+
   public approveModal() {
     const place = { ...this.props.selectedPlace };
     if (this.state.customName.length > 0) {
@@ -36,16 +37,19 @@ export default class SearchBox extends React.Component<IModal, any> {
     this.props.hideModal();
     this.props.approveModal(this.props.selectedIds, place);
   }
+
   public cancelModal() {
     this.setState({ customName: "", edited: false });
     this.props.hideModal();
   }
+
   public handleInputChange(event: React.FormEvent<HTMLInputElement>) {
     this.setState({
       customName: event.currentTarget.value,
       edited: true
     });
   }
+
   public render() {
     if (!this.props.visible) {
       return null;

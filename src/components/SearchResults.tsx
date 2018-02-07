@@ -7,7 +7,6 @@ import Row from "./Row";
 
 export interface ISearchResults {
   className?: string;
-  error: string;
   idKeyName: string;
   results: object[];
   mappings: object;
@@ -19,9 +18,6 @@ interface IResultObject {
   [key: string]: string;
 }
 const BareResults = (props: ISearchResults) => {
-  if (props.error.length > 0) {
-    return <Div>{`Search failed: ${props.error}`}</Div>;
-  }
   if (props.results == null) {
     return null;
   }

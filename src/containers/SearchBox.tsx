@@ -5,7 +5,6 @@ import { InterfacePlace } from "../types/types";
 
 export interface ISearchBoxProps {
   className?: string;
-  errorMsg: string;
   fetchingStops: boolean;
   fetchResults: (searchString: string) => void;
   idKeyName: string;
@@ -37,7 +36,6 @@ export default class SearchBox extends React.Component<ISearchBoxProps, any> {
 
   public render() {
     // filter results
-    const failed: boolean = this.props.errorMsg.length > 0 ? true : false;
     return (
       <Box className={this.props.className}>
         <Form
@@ -53,11 +51,9 @@ export default class SearchBox extends React.Component<ISearchBoxProps, any> {
           />
         </Form>
         <SearchResults
-          error={this.props.errorMsg}
           idKeyName={this.props.idKeyName}
           mappings={this.props.mappings}
           results={
-            !failed &&
             this.props.searchParams.length >= this.props.searchStringMinLength
               ? this.props.results
               : null

@@ -1,4 +1,4 @@
-import * as React from "react";
+// import * as React from "react";
 import { connect, Dispatch } from "react-redux";
 import { showModal } from "../actions/modal";
 import { selectPlace } from "../actions/places";
@@ -9,10 +9,9 @@ import {
   InterfaceSearchParams,
   InterfaceSearchState
 } from "../types/types";
-import SearchBox, { ISearchBoxProps } from "./SearchBox";
+import SearchBox from "./SearchBox";
 
 interface IDataMapper {
-  errorMsg: string;
   mappings: object;
   searchStringMinLength: number;
   selectedIds: string[]; // supply a list of the search results that have been previously selected
@@ -33,13 +32,11 @@ const mapStateToProps = ({
   places,
   searchParams,
   foundStops,
-  fetchingStops,
-  stopError
+  fetchingStops
 }: ISearchInputData): ISearchContainer => {
   const selectedIds: string[] = [];
   places.forEach(stop => selectedIds.push(stop.id.toString()));
   return {
-    errorMsg: stopError,
     fetchingStops,
     idKeyName,
     mappings: mapResults,

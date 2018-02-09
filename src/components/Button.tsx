@@ -10,14 +10,18 @@ export interface InterfaceButton {
 }
 
 const BareButton = (props: InterfaceButton) => (
-  <div className={props.className} onClick={props.action}>
+  <button className={props.className} onClick={props.action} tabIndex={0}>
     {props.label}
-  </div>
+  </button>
 );
 
 const Button = styled(BareButton)`
   flex: 1;
+  border: none;
+  padding: 0;
   margin: 2px;
+  font-family: ${props => props.theme.textFont};
+  font-size: 1em;
   text-align: ${props => (props.center ? "center" : "inherit")};
   cursor: pointer;
   color: ${props =>

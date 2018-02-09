@@ -16,6 +16,7 @@ export interface ISelectedPlace {
 }
 
 export interface IArrival {
+  headSign: string;
   stopId: string;
   patternName: string;
   scheduledArrival: number;
@@ -63,6 +64,8 @@ interface IScheduledArrival {
 }
 interface IPattern {
   name: string;
+  headsign: string;
+  directionId: number;
 }
 interface IStoptimesForPatterns {
   pattern: IPattern;

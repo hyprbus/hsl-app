@@ -11,6 +11,8 @@ export const generateArrivalsQuery = (parameters: string[]): string => {
       stoptimesForPatterns {
         pattern {
           name
+          directionId
+          headsign
         }
         stoptimes {
           scheduledArrival

@@ -1,11 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
-import { IArrival } from "../types/types";
 import Column from "./Column";
 import Row from "./Row";
 
 export interface InterfaceArrivalsProps {
   className?: string;
+  headSign: string;
   patternName: string;
   arrivalTime: string;
   waitTime: number;
@@ -14,13 +14,16 @@ export interface InterfaceArrivalsProps {
 const BareArrival = (props: InterfaceArrivalsProps) => {
   return (
     <Row className={props.className}>
-      <Column width="25%" align="left">
+      <Column width="20%" align="left">
         {`${props.waitTime}mins`}
       </Column>
-      <Column width="50%" align="left">
+      <Column width="20%" align="left">
         {props.patternName}
       </Column>
-      <Column width="25%" align="right">
+      <Column width="40%" align="left">
+        {props.headSign}
+      </Column>
+      <Column width="20%" align="right">
         {props.arrivalTime}
       </Column>
     </Row>

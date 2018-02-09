@@ -6,13 +6,21 @@ import { IArrival, IArrivalsData } from "../types/types";
 
 export default function extractArrivals(data: IArrivalsData): IArrival[] {
   const arrivals: IArrival[] = [];
-  data.data.stops.forEach((lineStop) => {
+  data.data.stops.forEach(lineStop => {
     const stopId = lineStop.gtfsId;
-    lineStop.stoptimesForPatterns.forEach((line) => {
+    lineStop.stoptimesForPatterns.forEach(line => {
       const lineName = line.pattern.name;
-      line.stoptimes.forEach((arrivalTime) => {
-        arrivals.push({ stopId, patternName: lineName, scheduledArrival: arrivalTime.scheduledArrival });
+      const headSign = line.pattern.headsign;
+      // if (line.pattern.directionId === 1) {
+      line.stoptimes.forEach(arrivalTime => {
+        arrivals.push({
+          headSign,
+          patternName: lineName,
+          scheduledArrival: arrivalTime.scheduledArrival,
+          stopId
+        });
       });
+      // }
     });
   });
   return arrivals;

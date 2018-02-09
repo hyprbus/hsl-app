@@ -61,6 +61,8 @@ export default class SearchBox extends React.Component<IModal, any> {
             <ModalContent>
               <div>{this.props.inputDescription}</div>
               <input
+                autoFocus
+                spellCheck={false}
                 type="text"
                 onChange={this.handleInputChange}
                 value={

@@ -67,7 +67,7 @@ module.exports = {
       template: "index.template.ejs",
       inject: "body"
     }),
-    new CleanWebpackPlugin(["build"]),
-    new CopyWebpackPlugin([{ from: "src/images", to: "images" }])
+    new CleanWebpackPlugin(["build"])
+    // new CopyWebpackPlugin([{ from: "src/images", to: "images" }])
   ]
 };

@@ -7,7 +7,6 @@
   "scripts": {
     "start": "serve dist -p 5000",
     "start:dev": "webpack-dev-server",
-    "dev-build": "webpack",
     "build": "webpack -p",
     "test": "jest"
   },
@@ -51,11 +50,7 @@
     "webpack-dev-server": "^2.11.1"
   },
   "jest": {
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
+    "moduleFileExtensions": ["ts", "tsx", "js"],
     "transform": {
       "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },

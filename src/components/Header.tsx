@@ -16,7 +16,7 @@ const Header = styled(BareHeader)`
   margin: 0 0 0.5em 0;
   color: ${props => props.theme.textColor};
   font-family: ${props => props.theme.textFont};
-  font-size: 2em;
+  font-size: 1.8em;
   text-decoration: underline;
 `;
 

@@ -53,6 +53,7 @@ const ResultRow = styled(BareResultRow)`
     css`
       font-style: italic;
       cursor: default;
+      color: ${props.theme.notSelectableColor};
       background-color: ${props.theme.notSelectableBackgroundColor};
     `};
 `;
